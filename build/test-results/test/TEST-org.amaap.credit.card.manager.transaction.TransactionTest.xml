@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.amaap.credit.card.manager.transaction.TransactionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-03-12T20:04:47" hostname="LAPTOP-205J7BQ6" time="0.059">
+  <properties/>
+  <testcase name="shouldAbleToHandleMultipleTransactions()" classname="org.amaap.credit.card.manager.transaction.TransactionTest" time="0.047"/>
+  <testcase name="shouldAbleToPerformTransactionForCustomerId()" classname="org.amaap.credit.card.manager.transaction.TransactionTest" time="0.005"/>
+  <testcase name="shouldCalculateTotalAmountForCategory()" classname="org.amaap.credit.card.manager.transaction.TransactionTest" time="0.002"/>
+  <system-out><![CDATA[Transaction performed..
+[{1=[Grocery, 1200.0, MARCH]}]
+Transaction found in the list
+Transaction already exists
+Transaction found in the list
+Transaction performed..
+[{1=[Grocery, 1200.0, MARCH]}, {1=[Electronics, 800.0, MARCH]}]
+Transaction found in the list
+Transaction performed..
+[{1=[Grocery, 1200.0, MARCH]}, {1=[Electronics, 800.0, MARCH]}, {1=[Clothing, 500.0, MARCH]}]
+Transaction found in the list
+Credit card Assigned..
+Transaction performed..
+[{1=[Grocery, 1200.0, MARCH]}]
+Transaction found in the list
+Transaction performed..
+[{1=[Grocery, 1200.0, MARCH]}]
+Transaction found in the list
+Transaction performed..
+[{1=[Grocery, 1200.0, MARCH]}, {1=[Grocery, 800.0, MARCH]}]
+Transaction found in the list
+Transaction performed..
+[{1=[Grocery, 1200.0, MARCH]}, {1=[Grocery, 800.0, MARCH]}, {1=[Grocery, 500.0, MARCH]}]
+Transaction found in the list
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
