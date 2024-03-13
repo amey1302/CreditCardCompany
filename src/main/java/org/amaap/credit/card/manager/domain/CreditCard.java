@@ -1,4 +1,4 @@
-package org.amaap.credit.card.manager.doamin;
+package org.amaap.credit.card.manager.domain;
 
 
 import java.util.ArrayList;

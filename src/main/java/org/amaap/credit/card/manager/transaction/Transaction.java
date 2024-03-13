@@ -18,10 +18,10 @@ public class Transaction {
     }
 
     public boolean perform(String category, double amount, Month month) {
-        // Set transaction details
+
         setDetails(category, amount, month);
 
-        // Check if the transaction has been added successfully
+
         for (Map<Integer, List<Object>> map : transactionDataList) {
             int storedCustomerId = map.keySet().iterator().next();
             if (storedCustomerId == getCustomerId()) {
@@ -31,7 +31,6 @@ public class Transaction {
             }
         }
 
-        // Transaction not found
         System.out.println("Transaction not found in the list");
         return false;
     }

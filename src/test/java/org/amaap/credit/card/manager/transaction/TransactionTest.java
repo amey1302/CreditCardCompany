@@ -1,10 +1,13 @@
 package org.amaap.credit.card.manager.transaction;
 
 import org.amaap.credit.card.manager.CreditCardManager;
-import org.amaap.credit.card.manager.doamin.Customer;
+import org.amaap.credit.card.manager.domain.Customer;
+import org.amaap.credit.card.manager.domain.exception.InvalidCustomerIdException;
+import org.amaap.credit.card.manager.domain.exception.InvalidCustomerNameException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.naming.InvalidNameException;
 import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +20,7 @@ class TransactionTest {
     }
 
     @Test
-    void shouldAbleToPerformTransactionForCustomerId() {
+    void shouldAbleToPerformTransactionForCustomerId() throws InvalidNameException, InvalidCustomerIdException, InvalidCustomerNameException {
         Customer customer = Customer.createCustomer(1, "xyz", "abc@123");
         boolean creditCardManager = CreditCardManager.assignCard(customer);
         boolean expected = false;
@@ -38,7 +41,7 @@ class TransactionTest {
 
         // Perform multiple transactions for the same customer
         assertTrue(transaction.perform("Grocery", 1200, Month.MARCH));
-        assertTrue(transaction.perform("Grocery", 1200, Month.MARCH));
+        assertTrue(transaction.perform("Grocery", 700, Month.MARCH));
         assertTrue(transaction.perform("Electronics", 800, Month.MARCH));
         assertTrue(transaction.perform("Clothing", 500, Month.MARCH));
     }

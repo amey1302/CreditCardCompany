@@ -1,17 +1,21 @@
-package org.amaap.credit.card.manager.doamin;
+package org.amaap.credit.card.manager.domain;
+
+import org.amaap.credit.card.manager.domain.exception.InvalidCustomerIdException;
+import org.amaap.credit.card.manager.domain.exception.InvalidCustomerNameException;
 
 import java.util.Objects;
 
 public class Customer {
     private static int id;
-    private String name;
-    private String email;
+    private static String name;
+    private static String email;
 
 
-    public static Customer createCustomer(int id, String name, String email) {
-        if (id <= 0) {
-            throw new IllegalArgumentException("Invalid or duplicate ID");
-        }
+    public static Customer createCustomer(int id, String name, String email) throws InvalidCustomerIdException, InvalidCustomerNameException {
+        if(id <= 0 )
+            throw new InvalidCustomerIdException();
+        if( name == null || name.isEmpty() )
+            throw new InvalidCustomerNameException("Invalid Name Exception");
         return new Customer(id, name, email);
     }
 
@@ -25,11 +29,11 @@ public class Customer {
         return id;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
-    public String getEmail() {
+    public static String getEmail() {
         return email;
     }
 

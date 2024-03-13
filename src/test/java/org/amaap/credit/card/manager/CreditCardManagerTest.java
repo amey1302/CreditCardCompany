@@ -1,8 +1,11 @@
 package org.amaap.credit.card.manager;
 
-import org.amaap.credit.card.manager.doamin.Customer;
+import org.amaap.credit.card.manager.domain.Customer;
+import org.amaap.credit.card.manager.domain.exception.InvalidCustomerIdException;
+import org.amaap.credit.card.manager.domain.exception.InvalidCustomerNameException;
 import org.junit.jupiter.api.Test;
 
+import javax.naming.InvalidNameException;
 import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CreditCardManagerTest {
 
     @Test
-    void shouldAbleToCreateCustomer() {
+    void shouldAbleToCreateCustomer() throws InvalidNameException, InvalidCustomerIdException, InvalidCustomerNameException {
         CreditCardManager creditCardManger = new CreditCardManager();
         Customer expected = Customer.createCustomer(1, "John Doe", "abc@gmail.com");
         Customer actual = creditCardManger.createCustomer(1, "John Doe", "abc@gmail.com");
@@ -21,7 +24,7 @@ public class CreditCardManagerTest {
     }
 
     @Test
-    void shouldAbleToAssignCreditCardToUser() {
+    void shouldAbleToAssignCreditCardToUser() throws InvalidNameException, InvalidCustomerIdException, InvalidCustomerNameException {
         CreditCardManager creditCardManager = new CreditCardManager();
         Customer customer = Customer.createCustomer(1, "John Doe", "abc@gmail.com");
         boolean isAssigned = creditCardManager.assignCard(customer);
