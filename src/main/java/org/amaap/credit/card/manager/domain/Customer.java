@@ -1,9 +1,13 @@
 package org.amaap.credit.card.manager.domain;
 
+import org.amaap.credit.card.manager.domain.exception.CustomerValidationException;
+import org.amaap.credit.card.manager.domain.exception.InvalidCustomerEmailIdException;
 import org.amaap.credit.card.manager.domain.exception.InvalidCustomerIdException;
 import org.amaap.credit.card.manager.domain.exception.InvalidCustomerNameException;
 
 import java.util.Objects;
+
+import static org.amaap.credit.card.manager.validation.CustomerValidation.*;
 
 public class Customer {
     private static int id;
@@ -11,12 +15,16 @@ public class Customer {
     private static String email;
 
 
-    public static Customer createCustomer(int id, String name, String email) throws InvalidCustomerIdException, InvalidCustomerNameException {
-        if(id <= 0 )
-            throw new InvalidCustomerIdException();
-        if( name == null || name.isEmpty() )
-            throw new InvalidCustomerNameException("Invalid Name Exception");
+    public static Customer createCustomer(int id, String name, String email) throws CustomerValidationException {
+        if (id <= 0)
+            throw new InvalidCustomerIdException("Invalid CustomerId : " + id);
+        if (isCustomerNameValid(name))
+            throw new InvalidCustomerNameException("Invalid CustomerName : " + name);
+        if (!isCustomerEmailIdValid(email))
+            throw new InvalidCustomerEmailIdException("Invalid Customer Email : " + email);
         return new Customer(id, name, email);
+
+
     }
 
     private Customer(int id, String name, String email) {

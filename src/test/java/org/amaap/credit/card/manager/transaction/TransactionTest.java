@@ -2,6 +2,7 @@ package org.amaap.credit.card.manager.transaction;
 
 import org.amaap.credit.card.manager.CreditCardManager;
 import org.amaap.credit.card.manager.domain.Customer;
+import org.amaap.credit.card.manager.domain.exception.CustomerValidationException;
 import org.amaap.credit.card.manager.domain.exception.InvalidCustomerIdException;
 import org.amaap.credit.card.manager.domain.exception.InvalidCustomerNameException;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +21,7 @@ class TransactionTest {
     }
 
     @Test
-    void shouldAbleToPerformTransactionForCustomerId() throws InvalidNameException, InvalidCustomerIdException, InvalidCustomerNameException {
+    void shouldAbleToPerformTransactionForCustomerId() throws  CustomerValidationException {
         Customer customer = Customer.createCustomer(1, "xyz", "abc@123");
         boolean creditCardManager = CreditCardManager.assignCard(customer);
         boolean expected = false;

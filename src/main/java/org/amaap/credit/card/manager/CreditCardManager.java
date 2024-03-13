@@ -2,8 +2,7 @@ package org.amaap.credit.card.manager;
 
 import org.amaap.credit.card.manager.domain.CreditCard;
 import org.amaap.credit.card.manager.domain.Customer;
-import org.amaap.credit.card.manager.domain.exception.InvalidCustomerIdException;
-import org.amaap.credit.card.manager.domain.exception.InvalidCustomerNameException;
+import org.amaap.credit.card.manager.domain.exception.CustomerValidationException;
 import org.amaap.credit.card.manager.transaction.TransactionManager;
 
 import javax.naming.InvalidNameException;
@@ -16,7 +15,7 @@ public class CreditCardManager {
         this.creditCard = new CreditCard(); // Assuming CreditCard has a default constructor
     }
 
-    public Customer createCustomer(int customerId, String customerName, String customerEmail) throws InvalidNameException, InvalidCustomerIdException, InvalidCustomerNameException {
+    public Customer createCustomer(int customerId, String customerName, String customerEmail) throws CustomerValidationException {
         // Create a customer using the provided data
         Customer customer = Customer.createCustomer(customerId, customerName, customerEmail);
         return customer;
@@ -30,7 +29,7 @@ public class CreditCardManager {
         return creditCard.card(id, name, email); // Assuming card method takes these parameters
     }
 
-    public boolean MakeTransactions( String grocery, double amount, Month month) {
-        return TransactionManager.perform(grocery,amount,month);
+    public boolean MakeTransactions(String grocery, double amount, Month month) {
+        return TransactionManager.perform(grocery, amount, month);
     }
 }
